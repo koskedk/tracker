@@ -5,6 +5,5 @@ void main() {
   Project p = Project.create(name: "test", description: "test project");
   test('project should have uuid', () {
     expect(p.id, isNotNull);
-    print(p.id);
   });
 }
