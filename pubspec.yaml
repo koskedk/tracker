@@ -31,6 +31,9 @@ dependencies:
   uuid: ^4.5.3
   drift_flutter: ^0.3.0
 
+  # state managment
+  flutter_riverpod: ^3.3.2
+
 dev_dependencies:
   # Testing
   flutter_test:
