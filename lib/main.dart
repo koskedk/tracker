@@ -1,8 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tracker/core/di/injection.dart';
+import 'package:tracker/core/seed/data_seeder.dart';
+import 'package:tracker/presentation/projects/projects_page.dart';
 
 void main() async {
-  await configureDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies(environment: kDebugMode ? 'dev' : 'prod');
+  await getIt<IDataSeeder>().seed();
   runApp(const MainApp());
 }
 
@@ -11,8 +16,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      title: 'Tracker',
+      theme: ThemeData(colorSchemeSeed: Colors.teal, useMaterial3: true),
+      home: const ProjectsPage(),
     );
   }
 }

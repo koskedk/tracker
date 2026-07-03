@@ -29,6 +29,7 @@ dependencies:
 
   # Utilities
   uuid: ^4.5.3
+  drift_flutter: ^0.3.0
 
 dev_dependencies:
   # Testing
