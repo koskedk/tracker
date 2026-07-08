@@ -9,6 +9,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:tracker/application/projects/create_project_use_case.dart'
@@ -16,8 +17,11 @@ import 'package:tracker/application/projects/create_project_use_case.dart'
 import 'package:tracker/application/projects/get_all_projects_use_case.dart'
     as _i711;
 import 'package:tracker/core/di/database_module.dart' as _i537;
+import 'package:tracker/core/di/network_module.dart' as _i456;
 import 'package:tracker/core/seed/data_seeder.dart' as _i1031;
 import 'package:tracker/domain/repositories/project_repository.dart' as _i241;
+import 'package:tracker/infrastructure/datasources/project_remote_data_source.dart'
+    as _i224;
 import 'package:tracker/infrastructure/persistence/app_database.dart' as _i227;
 import 'package:tracker/infrastructure/persistence/daos/project_dao.dart'
     as _i835;
@@ -37,9 +41,14 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final databaseModule = _$DatabaseModule();
+    final networkModule = _$NetworkModule();
     gh.lazySingleton<_i227.AppDatabase>(() => databaseModule.database);
+    gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
     gh.lazySingleton<_i835.ProjectDao>(
       () => databaseModule.projectDao(gh<_i227.AppDatabase>()),
+    );
+    gh.lazySingleton<_i224.IProjectRemoteDataSource>(
+      () => _i224.ProjectRemoteDataSource(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i241.IProjectRepository>(
       () => _i706.ProjectRepositoryImpl(gh<_i835.ProjectDao>()),
@@ -66,3 +75,5 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$DatabaseModule extends _i537.DatabaseModule {}
+
+class _$NetworkModule extends _i456.NetworkModule {}

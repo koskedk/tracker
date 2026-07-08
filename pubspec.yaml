@@ -26,6 +26,7 @@ dependencies:
 
   # Code generation annotations
   freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
 
   # Utilities
   uuid: ^4.5.3
@@ -33,6 +34,10 @@ dependencies:
 
   # state managment
   flutter_riverpod: ^3.3.2
+
+  # HTTP client
+  dio: ^5.7.0
+
 
 dev_dependencies:
   # Testing
@@ -46,7 +51,6 @@ dev_dependencies:
   # Code generation
   build_runner: ^2.15.0
   freezed: ^3.2.5
-  json_annotation: ^4.12.0
   json_serializable: ^6.14.0
   injectable_generator: ^3.0.2
   drift_dev: ^2.34.0

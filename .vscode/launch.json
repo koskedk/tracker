@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "tracker (web)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "toolArgs": ["--dart-define-from-file=env/dev.json"]
+    },
+    {
+      "name": "Run current test file",
+      "request": "launch",
+      "type": "dart",
+      "program": "${file}"
+    },
+    {
+      "name": "Run current test file (integration)",
+      "request": "launch",
+      "type": "dart",
+      "program": "${file}",
+      "toolArgs": [
+        "--tags=integration",
+        "--run-skipped",
+        "--dart-define-from-file=env/test.json"
+      ]
+    }
+  ]
+}

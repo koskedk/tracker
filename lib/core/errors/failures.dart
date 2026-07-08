@@ -10,3 +10,7 @@ final class DatabaseFailure extends Failure {
 final class UnknownFailure extends Failure {
   const UnknownFailure(super.message);
 }
+
+final class NetworkFailure extends Failure {
+  const NetworkFailure(super.message);
+}
